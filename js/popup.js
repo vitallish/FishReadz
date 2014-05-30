@@ -2,20 +2,7 @@ $(document).ready(function(){
 
 listYourTurn();
 
-   chrome.tabs.query({url:"http://warfish.net/*"}, function(aTab) {
-		var numWFTabs = aTab.length;
-		for (var i=0; i<aTab.length; i++){
-		var curTab = aTab[i];
-		
-        var tabID = curTab.id;
-        var tabUrl = curTab.url;
-		chrome.tabs.sendRequest(tabID, {scriptOptions: {turns:'2'}},function(){
-			chrome.tabs.executeScript(tabID,{file:'injectCode.js'});
-		
-		});
-		
-		}
-    });
+ 
 
 });
 
@@ -43,7 +30,15 @@ var oTitles = $xml.find("title");
 
 var itemCount = oItems.length; //last item is all games
 if (itemCount ==1){
-	document.getElementById("listGames").innerHTML = "It's Not Your Turn Bro.";
+	var newLink =document.createElement('A');
+	newLink.href = "http://warfish.net/war/play/?f=1";
+	newLink.innerHTML = "It's Not Your Turn Bro. But check your games.";
+	newLink.title = "Visit all your games";
+	newLink.onclick=function(){
+		chrome.tabs.create({url:this.href});
+		return false;
+	}
+	document.getElementById("listGames").appendChild(newLink);
 }else{
 	var oList = document.createElement("OL");
 

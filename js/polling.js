@@ -12,10 +12,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     }
 });
 
-//check on warfish updated tabs
-// https://developer.chrome.com/extensions/tabs#event-onActivated
-
-
 
 function rssCount(){
 chrome.storage.sync.get({
@@ -34,23 +30,23 @@ chrome.storage.sync.get({
 
 	var itemCount = $xml.find("item").length-1;
 	if(itemCount>0){
-	chrome.browserAction.setIcon({path:"icon.png"});
+	chrome.browserAction.setIcon({path:"../img/icon.png"});
 	chrome.browserAction.setBadgeText({text:itemCount.toString()});
 	}else{
-	chrome.browserAction.setIcon({path:"iconbw.png"});
+	chrome.browserAction.setIcon({path:"../img/iconbw.png"});
 	chrome.browserAction.setBadgeText({text:""});
 	}
 	
 	chrome.tabs.query({url:"http://warfish.net/*"}, function(aTab) {
 		var numWFTabs = aTab.length;
-				console.log(aTab);
+				//console.log(aTab);
 		for (var i=0; i<aTab.length; i++){
 
 			var curTab = aTab[i];		
 			var tabID = curTab.id;
         var tabUrl = curTab.url;
 		chrome.tabs.executeScript(tabID,{code:'var turnCount = '+itemCount.toString()+';'},function(){
-			chrome.tabs.executeScript(tabID,{file:'injectCode.js'});	
+			chrome.tabs.executeScript(tabID,{file:'js/injectCode.js'});	
 		});
 		}
     });
