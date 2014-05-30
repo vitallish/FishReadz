@@ -1,0 +1,21 @@
+{
+  "name": "Fish Readz",
+  "version": "0.3.1",
+  "manifest_version":2,
+  "description": "Readz your turn RSS feeds from Warfish.net",
+  "permissions":[
+	"http://warfish.net/*","alarms","tabs","storage"
+  ],
+  "homepage_url": "http://www.warfish.net",
+  "background": {
+	"scripts":["jquery-2.1.1.min.js","polling.js"]
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+	"default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" }
+}
