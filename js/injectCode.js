@@ -12,7 +12,7 @@ var canvas = document.createElement('canvas');
 		ctx.stroke();
         ctx.fillStyle = '#FFFFFF';
         ctx.font = 'bold 10px sans-serif';
-        ctx.fillText(turnCount.toString(), 10, 14);
+        ctx.fillText(turnCount, 10, 14);
 
         var link = document.createElement('link');
         link.type = 'image/x-icon';
